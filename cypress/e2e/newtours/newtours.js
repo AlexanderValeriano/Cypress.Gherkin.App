@@ -4,15 +4,15 @@ Given("open newtours application", () => {
   cy.visit("https://demo.guru99.com/test/newtours/");
 });
 
-When("provide valid userNmae and password", () => {
-  cy.get("[name=userName]").type("mercury");
-  cy.get("[name=password]").type("mercury");
+When("provide valid {string} and {string}", (userName, password) => {
+  cy.get("[name=userName]").type(userName);
+  cy.get("[name=password]").type(password, { force: true });
 });
 
 Then("click on submit button", () => {
-  cy.get("[name=submit]").click();
+  cy.get("[name=submit]").click({ force: true });
 });
 
-And("verify title of the web page", () => {
-  cy.title().should("eq", "Login: Mercury Tours");
+And("verify title should be {string}", (title) => {
+  cy.title().should("eq", title);
 });
