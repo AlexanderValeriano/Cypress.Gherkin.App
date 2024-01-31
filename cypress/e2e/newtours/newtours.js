@@ -4,9 +4,16 @@ Given("open newtours application", () => {
   cy.visit("https://demo.guru99.com/test/newtours/");
 });
 
-When("provide valid {string} and {string}", (userName, password) => {
-  cy.get("[name=userName]").type(userName);
-  cy.get("[name=password]").type(password, { force: true });
+// When("provide valid {string} and {string}", (userName, password) => {
+//   cy.get("[name=userName]").type(userName);
+//   cy.get("[name=password]").type(password, { force: true });
+// });
+
+When("I login as following", (datatable) => {
+  datatable.hashes().forEach(element => {
+    cy.get("[name=userName]").type(element.userName);
+    cy.get("[name=password]").type(element.password, { force: true });
+  });
 });
 
 Then("click on submit button", () => {

@@ -3,6 +3,8 @@ Feature: newtours validation
     Scenario: Home page
 
         Given open newtours application
-        When provide valid 'mercury' and "mercury"
+        When I login as following
+            | userName| password |
+            | mercury | mercury  |
         Then click on submit button
         And  verify title should be 'Login: Mercury Tours'
