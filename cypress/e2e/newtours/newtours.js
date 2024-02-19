@@ -1,4 +1,19 @@
-import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
+import {
+  Before,
+  After,
+  Given,
+  When,
+  Then,
+  And,
+} from "cypress-cucumber-preprocessor/steps";
+
+Before(() => {
+  cy.reload();
+});
+
+After(() => {
+  cy.reload();
+});
 
 Given("open newtours application", () => {
   cy.visit("https://demo.guru99.com/test/newtours/");
@@ -10,7 +25,7 @@ Given("open newtours application", () => {
 // });
 
 When("I login as following", (datatable) => {
-  datatable.hashes().forEach(element => {
+  datatable.hashes().forEach((element) => {
     cy.get("[name=userName]").type(element.userName);
     cy.get("[name=password]").type(element.password, { force: true });
   });
